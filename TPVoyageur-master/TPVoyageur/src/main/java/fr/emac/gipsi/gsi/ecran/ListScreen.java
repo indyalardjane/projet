@@ -100,6 +100,7 @@ public class ListScreen {
 		return first;
 		}	
 	public static Screen second(){
+
 		Screen second = new Screen("second");
 		second.setColMax(8);
 		second.setLigMax(8);
@@ -186,4 +187,92 @@ public class ListScreen {
 		second.getRectangles().add(new VisualRectangle(8,8,"LawnGreen"));
 		return second;
 		}
+	public static Screen ecran(){
+		Screen ecran = new Screen("ecran ");
+		ecran .setColMax(8);
+		ecran .setLigMax(8);
+		ecran .getRectangles().add(new VisualRectangle(0,0,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(0,1,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(0,2,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(0,3,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(0,4,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(0,5,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(0,6,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(0,7,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(0,8,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(1,0,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(1,1,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(1,2,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(1,3,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(1,4,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(1,5,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(1,6,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(1,7,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(1,8,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(2,0,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(2,1,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(2,2,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(2,3,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(2,4,"SaddleBrown"));
+		ecran .getRectangles().add(new VisualRectangle(2,5,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(2,6,"SaddleBrown"));
+		ecran .getRectangles().add(new VisualRectangle(2,7,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(2,8,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(3,0,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(3,1,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(3,2,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(3,3,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(3,4,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(3,5,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(3,6,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(3,7,"SaddleBrown"));
+		ecran .getRectangles().add(new VisualRectangle(3,8,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(4,0,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(4,1,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(4,2,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(4,3,"MidnightBlue"));
+		ecran .getRectangles().add(new VisualRectangle(4,4,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(4,5,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(4,6,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(4,7,"SaddleBrown"));
+		ecran .getRectangles().add(new VisualRectangle(4,8,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(5,0,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(5,1,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(5,2,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(5,3,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(5,4,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(5,5,"MidnightBlue"));
+		ecran .getRectangles().add(new VisualRectangle(5,6,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(5,7,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(5,8,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(6,0,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(6,1,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(6,2,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(6,3,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(6,4,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(6,5,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(6,6,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(6,7,"MediumBlue"));
+		ecran .getRectangles().add(new VisualRectangle(6,8,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(7,0,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(7,1,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(7,2,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(7,3,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(7,4,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(7,5,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(7,6,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(7,7,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(7,8,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(8,0,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(8,1,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(8,2,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(8,3,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(8,4,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(8,5,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(8,6,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(8,7,"AQUA"));
+		ecran .getRectangles().add(new VisualRectangle(8,8,"AQUA"));
+		return ecran;
+		}
 }
+
