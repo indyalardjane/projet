@@ -137,13 +137,12 @@ public class LaunchVoyage {
 			//simulatedVoyageur.getPosBody().setY(listPlanete.get(0).getPos().getY()-1);
 			//simulatedVoyageur.setDirection("E");
 			//Voyage voyage = new Voyage(listPlanete, simulatedVoyageur);
-		
+			return listPlanete;
+			
 		}
 		
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub
-			LaunchVoyage lee= new LaunchVoyage();
-			//lee.SimulateVoyage();
 			
 	}
 
