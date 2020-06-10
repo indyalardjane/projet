@@ -18,7 +18,8 @@ public class VoyageurSimuler extends AbstractVoyageur {
      */
     public VoyageurSimuler() {
         // TODO Auto-generated constructor stub
-    	goForward();
+    	
+  
     	
     	
     	
@@ -128,6 +129,7 @@ public class VoyageurSimuler extends AbstractVoyageur {
 			
 			PosTete.setX(XintTete + 1 );
 			PosTete.setY(YintTete - 1 );
+			setDirection("W");
 			
 		}
 		
@@ -135,6 +137,7 @@ public class VoyageurSimuler extends AbstractVoyageur {
 			
 			PosTete.setX(XintTete - 1 );
 			PosTete.setY(YintTete - 1 );
+			setDirection("N");
 			
 		}
 		
@@ -142,13 +145,14 @@ public class VoyageurSimuler extends AbstractVoyageur {
 			
 			PosTete.setX(XintTete - 1 );
 			PosTete.setY(YintTete + 1 );
+			setDirection("E");
 			
 		}
 		if (direction=="W") {
 			
 			PosTete.setX(XintTete + 1 );
 			PosTete.setY(YintTete + 1 );
-			
+			setDirection("S");
 		}
     }
 
@@ -168,6 +172,7 @@ public class VoyageurSimuler extends AbstractVoyageur {
 			
 			PosTete.setX(XintTete + 1 );
 			PosTete.setY(YintTete + 1 );
+			setDirection("E");
 			
 		}
 		
@@ -175,6 +180,7 @@ public class VoyageurSimuler extends AbstractVoyageur {
 			
 			PosTete.setX(XintTete + 1 );
 			PosTete.setY(YintTete - 1 );
+			setDirection("S");
 			
 		}
 		
@@ -182,14 +188,19 @@ public class VoyageurSimuler extends AbstractVoyageur {
 			
 			PosTete.setX(XintTete - 1 );
 			PosTete.setY(YintTete - 1 );
+			setDirection("W");
 			
 		}
 		if (direction=="W") {
 			
 			PosTete.setX(XintTete - 1 );
 			PosTete.setY(YintTete + 1 );
+			setDirection("N");
 			
 		}
 	
     }
+    
 }
+
+	
