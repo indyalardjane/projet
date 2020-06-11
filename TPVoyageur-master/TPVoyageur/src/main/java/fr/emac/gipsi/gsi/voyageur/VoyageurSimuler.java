@@ -104,8 +104,8 @@ public class VoyageurSimuler extends AbstractVoyageur {
 		}
 		else if (direction=="W") {
 			
-			PosTete.setY(YintTete - 1);
-    		PosBody.setY(YintBody - 1);
+			PosTete.setY(YintTete + 1);
+    		PosBody.setY(YintBody + 1);
 			
 		}
 

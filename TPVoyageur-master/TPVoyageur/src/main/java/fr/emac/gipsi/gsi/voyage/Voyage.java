@@ -68,30 +68,39 @@ public class Voyage extends AbstractVoyage {
     public void lancementSimuler() {
         // TODO Auto-generated method stub
     	
-    	AbstractVoyageur voyageurSimule = new VoyageurSimuler();
-		voyageurSimule.setPosBody(this.getSimulatedvoyageur().getPosBody());
-		voyageurSimule.setPosTete(this.getSimulatedvoyageur().getPosTete());
+    	
+    	AbstractVoyageur voyageurSimule = getSimulatedvoyageur();
+    	
+		
+		ArrayList<Planete> cheminoptimum = CalculMeilleurChemin();
+		System.out.println(cheminoptimum);
+		
+		
+		voyageurSimule.getPosTete().setX(listPlanete.get(0).getPos().getX());
+		voyageurSimule.getPosTete().setY(listPlanete.get(0).getPos().getY());
+		voyageurSimule.getPosBody().setX(listPlanete.get(0).getPos().getX());
+		voyageurSimule.getPosBody().setY(listPlanete.get(0).getPos().getY()-1);
 		voyageurSimule.setDirection("E");
-		
-		
-    	ArrayList<Planete> cheminoptimum = CalculMeilleurChemin();
+		afficheEcran();
+		wait(1000);
     	
     	for (int j=0 ;j<cheminoptimum.size();j++) {
     		
-    		Position PosTete = voyageurSimule.getPosTete();
+    		//Position PosTete = voyageurSimule.getPosTete();
     		Position PosBody = voyageurSimule.getPosBody();
-    		int Xtete = PosTete.getX();
+    		//int Xtete = PosTete.getX();
     		int XBody = PosBody.getX();
     		int YBody = PosBody.getY();
-    		int Ytete = PosTete.getY();
+    		//int Ytete = PosTete.getY();
     		String direction = voyageurSimule.getDirection();
     		
     		Position Posplanete = cheminoptimum.get(j).getPos();
     		int XposPlanete = Posplanete.getX();
     		int YposPlanete = Posplanete.getY();
     		
-    		int deltaX = Xtete - XposPlanete ;
-    		int deltaY = Ytete - YposPlanete ;
+    		int deltaX = XBody - XposPlanete ;
+    		int deltaY = YBody - YposPlanete ;
+    		
     		
     		if (direction =="N") {
     			
@@ -99,16 +108,25 @@ public class Voyage extends AbstractVoyage {
     				
     				for (int i =0 ; i< deltaX; i++){
     					voyageurSimule.goForward();
+    					afficheEcran();
+    		    		wait(1000);
+    					
     				}
     				if (deltaY<0) {
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     				}
     				else if (deltaY>0) {
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     				}
     				else if (deltaY !=0) {
     					for (int i=0 ; i< Math.abs(deltaY); i++) {
     						voyageurSimule.goForward();
+    						afficheEcran();
+    			    		wait(1000);
 					
     					}
     				}
@@ -116,15 +134,23 @@ public class Voyage extends AbstractVoyage {
     			if (deltaX ==0) {
     				if (deltaY >0) {
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0 ; i< Math.abs(deltaY); i++) {
     						voyageurSimule.goForward();
+    						afficheEcran();
+    			    		wait(1000);
     					}
     					
     				}
     				else if (deltaY <0) {
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0 ; i< Math.abs(deltaY); i++) {
     						voyageurSimule.goForward();
+    						afficheEcran();
+    			    		wait(1000);
     					}
     					
     				}
@@ -134,16 +160,24 @@ public class Voyage extends AbstractVoyage {
     				
     				for (int i =0 ; i< Math.abs(deltaX); i++){
     					voyageurSimule.goBackward();
+    					afficheEcran();
+    		    		wait(1000);
     				}
     				if (deltaY<0) {
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     				}
     				else if (deltaY>0) {
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     				}
     				else if (deltaY !=0) {
     					for (int i=0 ; i< Math.abs(deltaY); i++) {
     						voyageurSimule.goForward();
+    						afficheEcran();
+    			    		wait(1000);
 					
     					}
     				}
@@ -153,18 +187,28 @@ public class Voyage extends AbstractVoyage {
     		else if (direction =="S") {
     			if (deltaX<0) {
     				for (int i=0; i< Math.abs( deltaX) ; i++){
-    					voyageurSimule.goForward (); 
+    					voyageurSimule.goForward ();
+    					afficheEcran();
+    		    		wait(1000);
     				}	
     				if(deltaY<0){
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaY) ; i++){
     						voyageurSimule.goForward (); 
+    						afficheEcran();
+    			    		wait(1000);
     					}
     			}
     				if(deltaY>0){
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaY) ; i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
 
@@ -172,17 +216,27 @@ public class Voyage extends AbstractVoyage {
     			if (deltaX>0) {
     				for (int i=0; i< Math.abs(deltaX) ; i++){
     					voyageurSimule.goBackward (); 
+    					afficheEcran();
+    		    		wait(1000);
     					}
     				if(deltaY<0){
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaY) ; i++){
     						voyageurSimule.goForward (); 
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     				if(deltaY>0){
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaY) ; i++){
-    						voyageurSimule.goForward (); 
+    						voyageurSimule.goForward ();
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     				
@@ -190,14 +244,22 @@ public class Voyage extends AbstractVoyage {
     			if (deltaX==0) {
     				if(deltaY<0){
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaY) ; i++){
-    						voyageurSimule.goForward (); 
+    						voyageurSimule.goForward ();
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}	
     				if(deltaY>0){
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaY); i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     			}
@@ -206,17 +268,27 @@ public class Voyage extends AbstractVoyage {
     			if (deltaY<0) {
     				for (int i=0; i< Math.abs( deltaY) ; i++){
     					voyageurSimule.goBackward () ;
+    					afficheEcran();
+    		    		wait(1000);
     				}
     				if(deltaX<0){
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX) ; i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     				if(deltaX>0){
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX) ; i++){
     						voyageurSimule.goForward (); 
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
 
@@ -226,17 +298,27 @@ public class Voyage extends AbstractVoyage {
     			if (deltaY>0) {
     				for (int i=0; i< Math.abs(deltaY) ; i++){
     					voyageurSimule.goForward () ;
+    					afficheEcran();
+    		    		wait(1000);
     				}
     				if(deltaX<0){
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX) ; i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     				if(deltaX>0){
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX) ; i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     			}
@@ -244,14 +326,22 @@ public class Voyage extends AbstractVoyage {
     			if (deltaY==0) {
     				if(deltaX<0){
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( Math.abs(deltaX)) ; i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     				if(deltaX>0){
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX); i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     			}
@@ -261,17 +351,28 @@ public class Voyage extends AbstractVoyage {
     			if (deltaY<0) {
     				for (int i=0; i< Math.abs( deltaY) ; i++){
     					voyageurSimule.goForward () ;
+    					
+    					afficheEcran();
+    		    		wait(1000);
     				}
     				if(deltaX<0){
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX) ; i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     				if(deltaX>0){
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX) ; i++){
     						voyageurSimule.goForward (); 
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
 
@@ -281,17 +382,27 @@ public class Voyage extends AbstractVoyage {
     			if (deltaY>0) {
     				for (int i=0; i< Math.abs(deltaY) ; i++){
     					voyageurSimule.goBackward () ;
+    					afficheEcran();
+    		    		wait(1000);
     				}
     				if(deltaX<0){
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX) ; i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     				if(deltaX>0){
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX) ; i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     			}
@@ -299,23 +410,32 @@ public class Voyage extends AbstractVoyage {
     			if (deltaY==0) {
     				if(deltaX<0){
     					voyageurSimule.turnRight();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( Math.abs(deltaX)) ; i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     				if(deltaX>0){
     					voyageurSimule.turnLeft();
+    					afficheEcran();
+    		    		wait(1000);
     					for (int i=0; i< Math.abs( deltaX); i++){
     						voyageurSimule.goForward () ;
+    						afficheEcran();
+    			    		wait(1000);
     					}
     				}
     			}
     		}
-    		//récupérer les échantillons et prendre photo
+    		//récupérer les échantillons et prendre photo 
     		
+    		wait(3000);
     		}
     	
-        afficheEcran();
+        
     }
     
  
@@ -330,8 +450,10 @@ public class Voyage extends AbstractVoyage {
     	
     	Planete res = L.get(0);
     	
-    	int Xtete = tete.getX();
-    	int Ytete = tete.getY();
+    	//int Xtete = tete.getX();
+    	//int Ytete = tete.getY();
+    	int XBody = tete.getX();
+    	int YBody = tete.getY();
     	
     	
     	
@@ -339,8 +461,8 @@ public class Voyage extends AbstractVoyage {
 		int XposPlanete = posPlanete.getX();
 		int YposPlanete = posPlanete.getY();
 		
-		int deltaX = Xtete - XposPlanete ;
-		int deltaY = Ytete - YposPlanete ;
+		int deltaX = XBody - XposPlanete ;
+		int deltaY = YBody - YposPlanete ;
 		
 		int energyMin = 0;
 		int energy = 0;
@@ -373,21 +495,20 @@ public class Voyage extends AbstractVoyage {
 			}
 			
 		}
-		else {
+		else if (deltaX != 0 && deltaY != 0){
 			
 			energyMin = 2 * (Math.abs(deltaY) + Math.abs(deltaX)) + 1;
 			
 		}
-			 
-	
+		
     	for (int i=1 ;i<L.size(); i++) {
     		
     		posPlanete = L.get(i).getPos();
     		XposPlanete = posPlanete.getX();
     		YposPlanete = posPlanete.getY();
     		
-    		deltaX = Xtete - XposPlanete ;
-    		deltaY = Ytete - YposPlanete ;
+    		deltaX = XBody - XposPlanete ;
+    		deltaY = YBody - YposPlanete ;
     		 
     		
     		if (deltaX == 0) {
@@ -403,7 +524,7 @@ public class Voyage extends AbstractVoyage {
     				
     			}
     		}
-    		else if (deltaY ==0) {
+    		if (deltaY ==0) {
     			
     			if (direction == "E" || direction == "W") {
     				
@@ -419,18 +540,27 @@ public class Voyage extends AbstractVoyage {
     			
     		}
     		
-    		else if (deltaX != 0 && deltaY!=0){
+    		if (deltaX != 0 && deltaY!=0){
     			
     			energy = 2 * (Math.abs(deltaY) + Math.abs(deltaX)) + 1;
     			
     		}
     		
-    		else if (energy < energyMin) {  
+    		
+    		
+    		System.out.print("energie min");
+    		System.out.println(energyMin);
+    		
+    		System.out.print("energie actuelle");
+    		System.out.println(energy);
+    		
+    		if (energy < energyMin) {  
     			
     			res = L.get(i);
     			energyMin = energy;
-    			
+    			System.out.println("OK");
     		}
+    		
     	}
     	return res;
     }
@@ -446,12 +576,15 @@ public class Voyage extends AbstractVoyage {
     public ArrayList<Planete> CalculMeilleurChemin(){
     	
     	ArrayList<Planete> meilleurChemin = new ArrayList<Planete>();
-    	ArrayList<Planete> planeteVisite = getListPlanete();
+    	ArrayList<Planete> planeteVisite = new ArrayList<Planete>();
+    	planeteVisite.addAll(getListPlanete());
     	
     	AbstractVoyageur voyageurCalcul = new VoyageurSimuler();
 		voyageurCalcul.setPosBody(this.getSimulatedvoyageur().getPosBody());
 		voyageurCalcul.setPosTete(this.getSimulatedvoyageur().getPosTete());
 		voyageurCalcul.setDirection("E");
+		
+		System.out.println(voyageurCalcul.getPosBody());
 		
 		
 		
@@ -459,22 +592,23 @@ public class Voyage extends AbstractVoyage {
 			
 			Planete PlaneteProche = PlanetePlusProche(planeteVisite, voyageurCalcul.getPosTete(),voyageurCalcul.getPosBody(), voyageurCalcul.getDirection());
 			meilleurChemin.add(PlaneteProche);
+			
     		planeteVisite.remove(PlaneteProche);
     		
-    		Position PosTete = voyageurCalcul.getPosTete();
-    		//Position PosBody = voyageurCalcul.getPosBody();
-    		int Xtete = PosTete.getX();
-    		//int XBody = PosBody.getX();
-    		//int YBody = PosBody.getY();
-    		int Ytete = PosTete.getY();
+    		//Position PosTete = voyageurCalcul.getPosTete();
+    		Position PosBody = voyageurCalcul.getPosBody();
+    		//int Xtete = PosTete.getX();
+    		int XBody = PosBody.getX();
+    		int YBody = PosBody.getY();
+    		//int Ytete = PosTete.getY();
     		String direction = voyageurCalcul.getDirection();
     		
     		Position Posplanete = PlaneteProche.getPos();
     		int XposPlanete = Posplanete.getX();
     		int YposPlanete = Posplanete.getY();
     		
-    		int deltaX = Xtete - XposPlanete ;
-    		int deltaY = Ytete - YposPlanete ;
+    		int deltaX = XBody - XposPlanete ;
+    		int deltaY = YBody - YposPlanete ;
     		
     		if (direction =="N") {
     			
@@ -699,5 +833,5 @@ public class Voyage extends AbstractVoyage {
     	
     }
     
-    
 }
+

@@ -20,24 +20,24 @@ public class LaunchAnimation {
 	public static void main(String[] args) {
 		
 		AbstractAnimation aa = new AnimationFlash();
-		aa.setEcranDeb(ListScreen.first());
-		aa.setEcranFin(ListScreen.second());
+		aa.setEcranDeb(ListScreen.stormtrooper());
+		aa.setEcranFin(ListScreen.dog());
 		
 		aa.runAnimation();
 
 		aa.wait(1000);
 		
 		AbstractAnimation ab = new AnimationFlash();
-		ab.setEcranDeb(ListScreen.second());
-		ab.setEcranFin(ListScreen.first());
+		ab.setEcranDeb(ListScreen.stormtrooper());
+		ab.setEcranFin(ListScreen.dog());
 		
 		ab.runAnimation();
 		
 		ab.wait(1000);
         
         AbstractAnimation ac = new AnimationByColumn();
-        ac.setEcranDeb(ListScreen.first());
-        ac.setEcranFin(ListScreen.ecran());
+        ac.setEcranDeb(ListScreen.stormtrooper());
+        ac.setEcranFin(ListScreen.dog());
         ac.runAnimation();
         
 
