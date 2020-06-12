@@ -122,7 +122,7 @@ public class Voyage extends AbstractVoyage {
     					afficheEcran();
     		    		wait(1000);
     				}
-    				else if (deltaY !=0) {
+    				if (deltaY !=0) {
     					for (int i=0 ; i< Math.abs(deltaY); i++) {
     						voyageurSimule.goForward();
     						afficheEcran();
@@ -449,11 +449,8 @@ public class Voyage extends AbstractVoyage {
     public Planete PlanetePlusProche(ArrayList<Planete> L,Position tete, Position body, String direction ) {
     	
     	Planete res = L.get(0);
-    	
-    	//int Xtete = tete.getX();
-    	//int Ytete = tete.getY();
-    	int XBody = tete.getX();
-    	int YBody = tete.getY();
+    	int XBody = body.getX();
+    	int YBody = body.getY();
     	
     	
     	
@@ -480,7 +477,7 @@ public class Voyage extends AbstractVoyage {
 				
 			}
 		}
-		else if (deltaY ==0) {
+		if (deltaY ==0) {
 			
 			if (direction == "E" || direction == "W") {
 				
@@ -495,13 +492,13 @@ public class Voyage extends AbstractVoyage {
 			}
 			
 		}
-		else if (deltaX != 0 && deltaY != 0){
+		if (deltaX != 0 && deltaY != 0){
 			
 			energyMin = 2 * (Math.abs(deltaY) + Math.abs(deltaX)) + 1;
 			
 		}
 		
-    	for (int i=1 ;i<L.size(); i++) {
+    	for (int i=1 ; i < L.size() ; i++) {
     		
     		posPlanete = L.get(i).getPos();
     		XposPlanete = posPlanete.getX();
@@ -540,25 +537,19 @@ public class Voyage extends AbstractVoyage {
     			
     		}
     		
+			
     		if (deltaX != 0 && deltaY!=0){
     			
     			energy = 2 * (Math.abs(deltaY) + Math.abs(deltaX)) + 1;
     			
     		}
     		
-    		
-    		
-    		System.out.print("energie min");
-    		System.out.println(energyMin);
-    		
-    		System.out.print("energie actuelle");
-    		System.out.println(energy);
-    		
+			
     		if (energy < energyMin) {  
+    		
     			
     			res = L.get(i);
     			energyMin = energy;
-    			System.out.println("OK");
     		}
     		
     	}
