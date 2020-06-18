@@ -102,8 +102,11 @@ public class LaunchVoyage {
 			p5.getListVisibilite().add(p2);
 			p2.getListVisibilite().add(p5);
 			
+			
+			
 			p5.getListAccessibilite().add(p4);
 			p4.getListAccessibilite().add(p5);
+			
 			
 			
 			listPlanete.add(p5);

@@ -4,6 +4,7 @@
 package fr.emac.gipsi.gsi.voyage;
 
 import fr.emac.gipsi.gsi.voyageur.AbstractVoyageur;
+
 import fr.emac.gipsi.gsi.voyageur.*;
 
 
@@ -40,6 +41,7 @@ public class Voyage extends AbstractVoyage {
     @Override
     public int showFromPlanete(Planete p) {
         // TODO Auto-generated method stub
+    	
         return 0;
     }
 
@@ -69,12 +71,12 @@ public class Voyage extends AbstractVoyage {
         // TODO Auto-generated method stub
     	
     	
+    	
+    	
     	AbstractVoyageur voyageurSimule = getSimulatedvoyageur();
     	
 		
 		ArrayList<Planete> cheminoptimum = CalculMeilleurChemin();
-		System.out.println(cheminoptimum);
-		
 		
 		voyageurSimule.getPosTete().setX(listPlanete.get(0).getPos().getX());
 		voyageurSimule.getPosTete().setY(listPlanete.get(0).getPos().getY());
@@ -85,6 +87,8 @@ public class Voyage extends AbstractVoyage {
 		wait(1000);
     	
     	for (int j=0 ;j<cheminoptimum.size();j++) {
+    		
+    		
     		
     		//Position PosTete = voyageurSimule.getPosTete();
     		Position PosBody = voyageurSimule.getPosBody();
@@ -430,10 +434,21 @@ public class Voyage extends AbstractVoyage {
     				}
     			}
     		}
+    		
     		//récupérer les échantillons et prendre photo 
     		
-    		wait(3000);
-    		}
+    		voyageurSimule.takePicture(cheminoptimum.get(j));
+    		voyageurSimule.takeEchantillonSol(cheminoptimum.get(j));
+    		voyageurSimule.takeEchantillonRoche(cheminoptimum.get(j));
+    		voyageurSimule.getListPhotographie();
+    		System.out.println(cheminoptimum.get(j));
+    		
+    		
+    		
+    	
+    	}
+   
+    	
     	
         
     }
@@ -564,7 +579,7 @@ public class Voyage extends AbstractVoyage {
     
 
     
-    public ArrayList<Planete> CalculMeilleurChemin(){
+/*    public ArrayList<Planete> CalculMeilleurChemin(){
     	
     	ArrayList<Planete> meilleurChemin = new ArrayList<Planete>();
     	ArrayList<Planete> planeteVisite = new ArrayList<Planete>();
@@ -575,7 +590,7 @@ public class Voyage extends AbstractVoyage {
 		voyageurCalcul.setPosTete(this.getSimulatedvoyageur().getPosTete());
 		voyageurCalcul.setDirection("E");
 		
-		System.out.println(voyageurCalcul.getPosBody());
+		
 		
 		
 		
@@ -824,5 +839,314 @@ public class Voyage extends AbstractVoyage {
     	
     }
     
+}*/
+
+
+    public ArrayList<Planete> CalculMeilleurChemin(){
+    	
+    		ArrayList<Planete> meilleurChemin = new ArrayList<Planete>();
+    		ArrayList<Planete> planeteVisite = new ArrayList<Planete>();
+    		planeteVisite.addAll(getListPlanete());
+    	
+    		AbstractVoyageur voyageurCalcul = new VoyageurSimuler();
+    		voyageurCalcul.setPosBody(this.getSimulatedvoyageur().getPosBody());
+    		voyageurCalcul.setPosTete(this.getSimulatedvoyageur().getPosTete());
+    		voyageurCalcul.setDirection("E");
+    		
+    		meilleurChemin.add(planeteVisite.get(0));
+			planeteVisite.remove(planeteVisite.get(0));
+			
+			int compt = 1;
+			
+    		while (!planeteVisite.isEmpty()) {
+		
+    			int a = 0;
+    			ArrayList<Planete> listeIntermédiaire = new ArrayList<Planete>() ;
+    			Planete PlaneteProche = PlanetePlusProche(planeteVisite,voyageurCalcul.getPosTete(),voyageurCalcul.getPosBody(), voyageurCalcul.getDirection());
+    			listeIntermédiaire.addAll(planeteVisite) ;
+    			
+    			
+    			while ( !listeIntermédiaire.isEmpty() && a != 1){
+    				
+    				
+    				System.out.println(meilleurChemin);
+    				
+    				if (meilleurChemin.get(meilleurChemin.size()-1).getListAccessibilite().contains(PlaneteProche)){
+
+    					a = 1;
+    					
+    					
+    				}
+
+    				else {
+
+    					listeIntermédiaire.remove(PlaneteProche);
+    					
+    					if (listeIntermédiaire.size() != 0) {
+    						PlaneteProche = PlanetePlusProche(listeIntermédiaire,voyageurCalcul.getPosTete(),voyageurCalcul.getPosBody(), voyageurCalcul.getDirection());
+    					}	
+    				}
+    			}
+
+    			if (a == 1){
+
+    				meilleurChemin.add(PlaneteProche);
+    				planeteVisite.remove(PlaneteProche);
+    				compt = meilleurChemin.size();
+    				
+    			}
+    			
+    			else {
+    				
+    				
+    				meilleurChemin.add(meilleurChemin.get(compt-1));
+    				PlaneteProche = meilleurChemin.get(meilleurChemin.size()-1);
+    				compt = compt-1;
+    				
+    			}
+    			
+    			//Position PosTete = voyageurCalcul.getPosTete();
+        		Position PosBody = voyageurCalcul.getPosBody();
+        		//int Xtete = PosTete.getX();
+        		int XBody = PosBody.getX();
+        		int YBody = PosBody.getY();
+        		//int Ytete = PosTete.getY();
+        		String direction = voyageurCalcul.getDirection();
+        		
+        		Position Posplanete = PlaneteProche.getPos();
+        		int XposPlanete = Posplanete.getX();
+        		int YposPlanete = Posplanete.getY();
+        		
+        		int deltaX = XBody - XposPlanete ;
+        		int deltaY = YBody - YposPlanete ;
+    			
+ 
+    			
+    			if (direction =="N") {
+        			
+        			if (deltaX >0) {
+        				
+        				for (int i =0 ; i< deltaX; i++){
+        					voyageurCalcul.goForward();
+        				}
+        				if (deltaY<0) {
+        					voyageurCalcul.turnRight();
+        				}
+        				else if (deltaY>0) {
+        					voyageurCalcul.turnLeft();
+        				}
+        				else if (deltaY !=0) {
+        					for (int i=0 ; i< Math.abs(deltaY); i++) {
+        						voyageurCalcul.goForward();
+    					
+        					}
+        				}
+        			}
+        			if (deltaX ==0) {
+        				if (deltaY >0) {
+        					voyageurCalcul.turnLeft();
+        					for (int i=0 ; i< Math.abs(deltaY); i++) {
+        						voyageurCalcul.goForward();
+        					}
+        					
+        				}
+        				else if (deltaY <0) {
+        					voyageurCalcul.turnRight();
+        					for (int i=0 ; i< Math.abs(deltaY); i++) {
+        						voyageurCalcul.goForward();
+        					}
+        					
+        				}
+        				
+        			}
+        			else if (deltaX<0) {
+        				
+        				for (int i =0 ; i< Math.abs(deltaX); i++){
+        					voyageurCalcul.goBackward();
+        				}
+        				if (deltaY<0) {
+        					voyageurCalcul.turnRight();
+        				}
+        				else if (deltaY>0) {
+        					voyageurCalcul.turnLeft();
+        				}
+        				else if (deltaY !=0) {
+        					for (int i=0 ; i< Math.abs(deltaY); i++) {
+        						voyageurCalcul.goForward();
+    					
+        					}
+        				}
+        			}
+        				
+        		}
+        		else if (direction =="S") {
+        			if (deltaX<0) {
+        				for (int i=0; i< Math.abs( deltaX) ; i++){
+        					voyageurCalcul.goForward (); 
+        				}	
+        				if(deltaY<0){
+        					voyageurCalcul.turnLeft();
+        					for (int i=0; i< Math.abs( deltaY) ; i++){
+        						voyageurCalcul.goForward (); 
+        					}
+        			}
+        				if(deltaY>0){
+        					voyageurCalcul.turnRight();
+        					for (int i=0; i< Math.abs( deltaY) ; i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+
+        			}
+        			if (deltaX>0) {
+        				for (int i=0; i< Math.abs(deltaX) ; i++){
+        					voyageurCalcul.goBackward (); 
+        					}
+        				if(deltaY<0){
+        					voyageurCalcul.turnLeft();
+        					for (int i=0; i< Math.abs( deltaY) ; i++){
+        						voyageurCalcul.goForward (); 
+        					}
+        				}
+        				if(deltaY>0){
+        					voyageurCalcul.turnRight();
+        					for (int i=0; i< Math.abs( deltaY) ; i++){
+        						voyageurCalcul.goForward (); 
+        					}
+        				}
+        				
+        			}
+        			if (deltaX==0) {
+        				if(deltaY<0){
+        					voyageurCalcul.turnLeft();
+        					for (int i=0; i< Math.abs( deltaY) ; i++){
+        						voyageurCalcul.goForward (); 
+        					}
+        				}	
+        				if(deltaY>0){
+        					voyageurCalcul.turnRight();
+        					for (int i=0; i< Math.abs( deltaY); i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        			}
+        			}
+        		else if (direction =="W") {
+        			if (deltaY<0) {
+        				for (int i=0; i< Math.abs( deltaY) ; i++){
+        					voyageurCalcul.goBackward () ;
+        				}
+        				if(deltaX<0){
+        					voyageurCalcul.turnLeft();
+        					for (int i=0; i< Math.abs( deltaX) ; i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        				if(deltaX>0){
+        					voyageurCalcul.turnRight();
+        					for (int i=0; i< Math.abs( deltaX) ; i++){
+        						voyageurCalcul.goForward (); 
+        					}
+        				}
+
+        				
+        			}
+
+        			if (deltaY>0) {
+        				for (int i=0; i< Math.abs(deltaY) ; i++){
+        					voyageurCalcul.goForward () ;
+        				}
+        				if(deltaX<0){
+        					voyageurCalcul.turnLeft();
+        					for (int i=0; i< Math.abs( deltaX) ; i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        				if(deltaX>0){
+        					voyageurCalcul.turnRight();
+        					for (int i=0; i< Math.abs( deltaX) ; i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        			}
+
+        			if (deltaY==0) {
+        				if(deltaX<0){
+        					voyageurCalcul.turnLeft();
+        					for (int i=0; i< Math.abs( Math.abs(deltaX)) ; i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        				if(deltaX>0){
+        					voyageurCalcul.turnRight();
+        					for (int i=0; i< Math.abs( deltaX); i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        			}
+        		}
+        		
+        		else if (direction =="E") {
+        			if (deltaY<0) {
+        				for (int i=0; i< Math.abs( deltaY) ; i++){
+        					voyageurCalcul.goForward () ;
+        				}
+        				if(deltaX<0){
+        					voyageurCalcul.turnRight();
+        					for (int i=0; i< Math.abs( deltaX) ; i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        				if(deltaX>0){
+        					voyageurCalcul.turnLeft();
+        					for (int i=0; i< Math.abs( deltaX) ; i++){
+        						voyageurCalcul.goForward (); 
+        					}
+        				}
+
+        				
+        			}
+
+        			if (deltaY>0) {
+        				for (int i=0; i< Math.abs(deltaY) ; i++){
+        					voyageurCalcul.goBackward () ;
+        				}
+        				if(deltaX<0){
+        					voyageurCalcul.turnRight();
+        					for (int i=0; i< Math.abs( deltaX) ; i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        				if(deltaX>0){
+        					voyageurCalcul.turnLeft();
+        					for (int i=0; i< Math.abs( deltaX) ; i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        			}
+
+        			if (deltaY==0) {
+        				if(deltaX<0){
+        					voyageurCalcul.turnRight();
+        					for (int i=0; i< Math.abs( Math.abs(deltaX)) ; i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        				if(deltaX>0){
+        					voyageurCalcul.turnLeft();
+        					for (int i=0; i< Math.abs( deltaX); i++){
+        						voyageurCalcul.goForward () ;
+        					}
+        				}
+        			}
+        		}
+        		}
+    		
+    		return meilleurChemin;
+    }
 }
+
+	
+
+
 

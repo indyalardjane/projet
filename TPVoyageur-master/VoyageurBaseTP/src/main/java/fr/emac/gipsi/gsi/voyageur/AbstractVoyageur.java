@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public abstract class AbstractVoyageur {
 
-    protected ArrayList<Screen> listPhotographie = new ArrayList<Screen>();
+    public ArrayList<Screen> listPhotographie = new ArrayList<Screen>();
     protected ArrayList<Screen> listEchantillonRoche = new ArrayList<Screen>();
     protected ArrayList<Screen> listEchantillonSol = new ArrayList<Screen>();
 
