@@ -4,7 +4,11 @@
 package fr.emac.gipsi.gsi.voyage;
 
 import fr.emac.gipsi.gsi.voyageur.AbstractVoyageur;
-
+import fr.emac.gipsi.gsi.animation.AbstractAnimation;
+import fr.emac.gipsi.gsi.animation.AnimationByColumn;
+import fr.emac.gipsi.gsi.animation.AnimationByLigne;
+import fr.emac.gipsi.gsi.animation.AnimationFlash;
+import fr.emac.gipsi.gsi.ecran.ListScreen;
 import fr.emac.gipsi.gsi.voyageur.*;
 
 
@@ -41,8 +45,7 @@ public class Voyage extends AbstractVoyage {
     @Override
     public int showFromPlanete(Planete p) {
         // TODO Auto-generated method stub
-    	
-        return 0;
+    	return 0;
     }
 
     /* (non-Javadoc)
@@ -51,6 +54,7 @@ public class Voyage extends AbstractVoyage {
     @Override
     public int showAll() {
         // TODO Auto-generated method stub
+    	
         return 0;
     }
 
@@ -71,7 +75,15 @@ public class Voyage extends AbstractVoyage {
         // TODO Auto-generated method stub
     	
     	
-    	
+    	Boolean[] tabUn;
+        tabUn = new Boolean[listPlanete.size()]; // true => prendre la planètre en photo + échantillons de roche et de sol à ramasser 
+        
+        for (int k = 0; k < tabUn.length; k++) {
+        	
+        	tabUn[k] = true;
+        	
+        	
+        }
     	
     	AbstractVoyageur voyageurSimule = getSimulatedvoyageur();
     	
@@ -436,12 +448,47 @@ public class Voyage extends AbstractVoyage {
     		}
     		
     		//récupérer les échantillons et prendre photo 
-    		
-    		voyageurSimule.takePicture(cheminoptimum.get(j));
-    		voyageurSimule.takeEchantillonSol(cheminoptimum.get(j));
-    		voyageurSimule.takeEchantillonRoche(cheminoptimum.get(j));
-    		voyageurSimule.getListPhotographie();
-    		System.out.println(cheminoptimum.get(j));
+    		if (tabUn[listPlanete.indexOf(cheminoptimum.get(j))]) {
+    			
+	    		voyageurSimule.takePicture(cheminoptimum.get(j));
+	    		voyageurSimule.takeEchantillonSol(cheminoptimum.get(j));
+	    		voyageurSimule.takeEchantillonRoche(cheminoptimum.get(j));
+	    		voyageurSimule.getListPhotographie();
+	    		
+	    		
+	    		
+	    		AbstractAnimation aa = new AnimationByColumn();
+	    		
+	    		aa.setEcranDeb(ListScreen.name());
+	    		aa.setEcranFin(cheminoptimum.get(j).getImage());
+	    		
+	    		aa.runAnimation();
+
+	    		aa.wait(1000);
+	    		
+	    		/*AbstractAnimation ab = new AnimationByColumn();
+	    		
+	    		ab.setEcranDeb(cheminoptimum.get(j).getEchantillonRoche());
+	    		ab.setEcranFin(cheminoptimum.get(j+1).getEchantillonRoche());
+	    		
+	    		ab.runAnimation();
+	    		
+	    		ab.wait(1000);
+	    		
+	    		AbstractAnimation ac = new AnimationByColumn();
+	    		
+	    		ac.setEcranDeb(cheminoptimum.get(j).getEchantillonSol());
+	    		ac.setEcranFin(cheminoptimum.get(j+1).getEchantillonSol());
+	    		
+	    		ac.runAnimation();
+	    		
+	    		ac.wait(1000);*/
+	    		
+	    		
+	    		tabUn[listPlanete.indexOf(cheminoptimum.get(j))] = false;
+	    		
+	    		}
+    		afficheEcran();
     		
     		
     		
