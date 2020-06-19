@@ -144,7 +144,7 @@ public class LaunchVoyage {
 	        simulatedVoyageur.setDirection("E");
 	        
 	        
-	        System.out.println(p6.getImage().getName());
+	        
 	        
 	        
 	        Voyage voyage = new Voyage(listPlanete, simulatedVoyageur);

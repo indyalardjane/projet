@@ -466,24 +466,30 @@ public class Voyage extends AbstractVoyage {
 
 	    		aa.wait(1000);
 	    		
-	    		/*AbstractAnimation ab = new AnimationByColumn();
+	    		AbstractAnimation ab = new AnimationByColumn();
 	    		
-	    		ab.setEcranDeb(cheminoptimum.get(j).getEchantillonRoche());
-	    		ab.setEcranFin(cheminoptimum.get(j+1).getEchantillonRoche());
+	    		if (cheminoptimum.get(j).getEchantillonRoche() != null) {
 	    		
-	    		ab.runAnimation();
+	    			ab.setEcranDeb(ListScreen.name());
+	    			ab.setEcranFin(cheminoptimum.get(j).getEchantillonRoche());
 	    		
-	    		ab.wait(1000);
+	    			ab.runAnimation();
+	    		
+	    			ab.wait(1000);
+	    		}
 	    		
 	    		AbstractAnimation ac = new AnimationByColumn();
 	    		
-	    		ac.setEcranDeb(cheminoptimum.get(j).getEchantillonSol());
-	    		ac.setEcranFin(cheminoptimum.get(j+1).getEchantillonSol());
+	    		if (cheminoptimum.get(j).getEchantillonSol() != null) {
+	    			
+	    			ac.setEcranDeb(ListScreen.name());
+	    			ac.setEcranFin(cheminoptimum.get(j).getEchantillonSol());
 	    		
-	    		ac.runAnimation();
+	    			ac.runAnimation();
 	    		
-	    		ac.wait(1000);*/
+	    			ac.wait(1000);
 	    		
+	    		}
 	    		
 	    		tabUn[listPlanete.indexOf(cheminoptimum.get(j))] = false;
 	    		
